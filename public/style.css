@@ -1,0 +1,145 @@
+/* --- General & Font --- */
+body {
+  font-family: 'Comic Sans MS', 'Chalkduster', 'cursive';
+  background-color: #fdf8e2; /* Warna krem seperti kertas tua */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border: 2px solid #8B4513; /* Coklat seperti sampul buku */
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  max-height: 800px;
+}
+
+h1 {
+  text-align: center;
+  color: #D2691E; /* Coklat-oranye */
+  border-bottom: 2px dashed #8B4513;
+  padding-bottom: 10px;
+  margin: 20px;
+  font-size: 2em;
+}
+
+/* --- Chat Box --- */
+.chat-box {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  /* Efek kertas buku tulis */
+  background-image:
+    linear-gradient(#d4eaff 1px, transparent 1px);
+  background-size: 100% 1.5em; /* Jarak antar garis */
+  line-height: 1.5em;
+  background-color: #f0f8ff; /* Biru sangat muda */
+}
+
+/* --- Messages --- */
+.message {
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  word-wrap: break-word;
+  position: relative;
+  line-height: 1.4;
+}
+
+.message strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.8em;
+  color: #555;
+}
+
+.message.user {
+  background-color: #dcf8c6; /* Hijau muda seperti stabilo */
+  align-self: flex-end;
+  border-bottom-right-radius: 3px;
+}
+
+.message.bot {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  align-self: flex-start;
+  border-bottom-left-radius: 3px;
+}
+
+/* --- Special States --- */
+.message.loading em {
+  color: #888;
+}
+
+.message.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #c62828;
+}
+
+.message.error strong {
+  color: #c62828;
+}
+
+/* --- Form Input --- */
+#chat-form {
+  display: flex;
+  padding: 15px;
+  border-top: 2px dashed #8B4513;
+  gap: 10px;
+}
+
+#model-select {
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  padding: 0 10px;
+  font-family: inherit;
+  font-size: 0.9em;
+  background-color: #fff;
+  cursor: pointer;
+  max-width: 150px;
+}
+
+#user-input {
+  flex-grow: 1;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+#chat-form button {
+  background-color: #5cb85c; /* Hijau */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+#chat-form button:hover {
+  background-color: #4cae4c;
+}
+
+#chat-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
