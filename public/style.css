@@ -13,7 +13,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
   background-color: #fff;
   border: 2px solid #8B4513; /* Coklat seperti sampul buku */
   border-radius: 10px;
@@ -40,15 +40,41 @@ h1 {
   font-size: 2em;
 }
 
-#reset-button {
+.build-badge {
+  font-size: 0.4em;
+  color: #888;
+  font-weight: normal;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.build-info-auth {
+  margin-top: 15px;
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+#auth-status {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.8em;
+}
+
+#auth-status a {
+  color: #D2691E;
+  text-decoration: none;
+}
+
+#reset-button, #logout-button {
   background-color: #f44336; /* Merah */
   color: white;
   border: none;
   border-radius: 5px;
   padding: 8px 12px;
   cursor: pointer;
-  font-family: inherit;
-  font-size: 0.8em;
+  font-family: 'Comic Sans MS', 'Chalkduster', 'cursive';
+  font-size: 1em;
 }
 
 /* --- Chat Box --- */
@@ -117,6 +143,44 @@ h1 {
   word-wrap: break-word;
 }
 
+/* Styling untuk blok kode di dalam pesan bot */
+.message.bot pre {
+  position: relative; /* Diperlukan untuk posisi absolut tombol */
+  background-color: #282c34; /* Warna gelap seperti editor kode */
+  color: #abb2bf;
+  padding: 1em;
+  padding-top: 2.5em; /* Beri ruang untuk tombol copy */
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+/* Reset style untuk 'code' di dalam 'pre' agar menyatu */
+.message.bot pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 1em;
+}
+
+.copy-code-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #444c56;
+  color: #c9d1d9;
+  border: 1px solid #555;
+  padding: 4px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.message.bot pre:hover .copy-code-button {
+  opacity: 1;
+}
+
 /* --- Special States --- */
 .message.loading em {
   color: #888;
@@ -138,9 +202,10 @@ h1 {
   padding: 15px;
   border-top: 2px dashed #8B4513;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-#model-select {
+#model-select, #subject-select {
   border: 2px solid #ccc;
   border-radius: 20px;
   padding: 0 10px;
@@ -158,6 +223,7 @@ h1 {
   padding: 10px 15px;
   font-family: inherit;
   font-size: 1em;
+  min-width: 200px;
 }
 
 #chat-form button {
@@ -180,4 +246,74 @@ h1 {
 #chat-form button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  font-size: 0.8em;
+  color: #888;
+  margin-top: 1rem;
+}
+
+/* --- Auth Pages (Login, Register, Dashboard) --- */
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border: 2px solid #8B4513;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.auth-container h1 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 1.5rem;
+}
+
+.auth-container input {
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.auth-container button {
+  padding: 12px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.auth-link {
+  margin-top: 1.5rem;
+  font-size: 0.9em;
+}
+
+.error-text {
+  color: #c62828;
+  margin-top: 1rem;
+  min-height: 1em;
+}
+
+.api-key {
+  background-color: #eee;
+  padding: 2px 5px;
+  border-radius: 3px;
+  word-break: break-all;
 }

@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Data files (contains sensitive info)
+users.json
+
 # Environment variables (PENTING: Agar API KEY tidak ter-upload)
 .env
 .env.local

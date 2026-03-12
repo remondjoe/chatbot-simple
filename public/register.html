@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi - Asisten Sekolah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Registrasi Akun</h1>
+        <form id="register-form">
+            <p>Daftar untuk menggunakan Google API Key Anda sendiri.</p>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" id="apiKey" placeholder="Google API Key Anda" required>
+            <button type="submit">Daftar</button>
+        </form>
+        <div id="error-message" class="error-text"></div>
+        <div class="auth-link">
+            <p>Sudah punya akun? <a href="/login.html">Login di sini</a></p>
+            <p><a href="/">Kembali sebagai Tamu</a></p>
+        </div>
+    </div>
+    <script src="/register.js"></script>
+</body>
+</html>
