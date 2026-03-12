@@ -5,6 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const modelSelect = document.getElementById('model-select');
   const chatBox = document.getElementById('chat-box');
   const submitButton = chatForm.querySelector('button[type="submit"]');
+  const resetButton = document.getElementById('reset-button');
+
+  // Variabel untuk menyimpan seluruh riwayat percakapan
+  let conversationHistory = [];
+
+  // Fungsi untuk mereset percakapan
+  const resetChat = () => {
+    conversationHistory = [];
+    chatBox.innerHTML = '';
+    appendMessage('bot', 'Halo! Aku Cerdas, asisten belajarmu. Ada yang bisa kubantu seputar Sejarah Indonesia?');
+    userInput.focus();
+  };
+
+  // Event listener untuk tombol reset
+  resetButton.addEventListener('click', resetChat);
 
   // Fungsi untuk scroll otomatis ke bawah chatbox
   const scrollToBottom = () => {
@@ -20,8 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Menggunakan textContent untuk keamanan (mencegah XSS injection)
-    const senderLabel = sender === 'user' ? '<strong>Anda:</strong> ' : '<strong>Bot:</strong> ';
-    messageDiv.innerHTML = `${senderLabel}${text}`; // innerHTML aman di sini karena text di-sanitize atau hardcoded
+    const senderLabel = sender === 'user' ? '<strong>Anda:</strong> ' : '<strong>SiCerdas:</strong> ';
+    if (sender === 'bot') {
+      // Parse response bot sebagai Markdown untuk menampilkan format seperti list, bold, dll.
+      messageDiv.innerHTML = senderLabel + marked.parse(text);
+    } else {
+      messageDiv.innerHTML = `${senderLabel}${text}`;
+    }
 
     chatBox.appendChild(messageDiv);
     scrollToBottom();
@@ -52,10 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!text) return; // Jangan kirim jika kosong
 
+    // Tambahkan pesan user ke riwayat
+    conversationHistory.push({ role: 'user', text: text });
+
     // 1. Tampilkan pesan user di chatbox
     appendMessage('user', text);
     userInput.value = ''; // Kosongkan input
     submitButton.disabled = true; // Cegah double submit
+
 
     // 2. Tampilkan loading
     showLoading();
@@ -66,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          conversation: [{ role: 'user', text: text }],
-          model: model
+          conversation: conversationHistory, // Kirim seluruh riwayat
+          model: model,
         })
       });
 
@@ -82,7 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 5. Tampilkan respon bot
       if (data && data.result) {
-        appendMessage('bot', data.result);
+        const botResponse = data.result;
+        appendMessage('bot', botResponse);
+        // Tambahkan respon bot ke riwayat
+        conversationHistory.push({ role: 'model', text: botResponse });
       } else {
         appendMessage('bot', 'Maaf, tidak ada respond yang diterima.', true);
       }
@@ -97,4 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userInput.focus(); // Fokuskan kursor ke input
     }
   });
+
+  // Tampilkan pesan selamat datang saat pertama kali dimuat
+  resetChat();
 });

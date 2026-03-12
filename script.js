@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Menggunakan textContent untuk keamanan (mencegah XSS injection)
-    const senderLabel = sender === 'user' ? '<strong>Anda:</strong> ' : '<strong>Bot:</strong> ';
+    const senderLabel = sender === 'user' ? '<strong>Anda:</strong> ' : '<strong>Asisten:</strong> ';
     messageDiv.innerHTML = `${senderLabel}${text}`; // innerHTML aman di sini karena text di-sanitize atau hardcoded
 
     chatBox.appendChild(messageDiv);

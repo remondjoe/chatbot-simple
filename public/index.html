@@ -8,7 +8,10 @@
 </head>
 <body>
   <div class="container">
-    <h1>Chatbot Sekolah</h1>
+    <div class="header">
+      <h1>Asisten Sejarah</h1>
+      <button id="reset-button" title="Mulai percakapan baru">Reset</button>
+    </div>
     <div id="chat-box" class="chat-box"></div>
     <form id="chat-form">
       <select id="model-select" title="Pilih Model AI">
@@ -20,6 +23,7 @@
       <button type="submit">➤</button>
     </form>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

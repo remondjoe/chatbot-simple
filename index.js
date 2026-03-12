@@ -35,7 +35,11 @@ app.post('/api/chat', async (req, res) => {
       contents: contents,
       config: {
         temperature: 0.9,
-        systemInstruction: "Jawab hanya menggunakan bahasa Indonesia.",
+        // Instruksi sistem yang lebih spesifik untuk "Education Bot"
+        systemInstruction: `Kamu adalah "Cerdas", seorang asisten belajar Sejarah Indonesia yang ramah dan ceria. 
+        Gunakan gaya bahasa yang mudah dimengerti untuk siswa SMP atau SMA. 
+        Selalu jawab dalam Bahasa Indonesia. 
+        Jika pertanyaan di luar topik sejarah, tolak dengan sopan dan ajak kembali untuk membahas sejarah.`,
       },
     });
 
