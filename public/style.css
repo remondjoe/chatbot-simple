@@ -317,3 +317,35 @@ footer {
   border-radius: 3px;
   word-break: break-all;
 }
+
+/* --- Guide Page --- */
+.guide-scroll-area {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.guide-content ol {
+  padding-left: 20px;
+}
+
+.guide-content li {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.btn-back {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #8B4513;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-back:hover {
+  background-color: #A0522D;
+}

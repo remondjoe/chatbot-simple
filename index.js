@@ -83,7 +83,9 @@ app.post('/api/chat', async (req, res) => {
       model: model || GEMINI_MODEL,
       contents: contents,
       config: {
-        temperature: 0.9,
+        temperature: parseFloat(process.env.AI_TEMPERATURE) || 0.9,
+        topP: parseFloat(process.env.AI_TOP_P) || 0.95,
+        topK: parseInt(process.env.AI_TOP_K) || 40,
         // Pilih instruksi berdasarkan subject, atau gunakan default jika tidak ada
         systemInstruction: instructions[subject] || instructions.default,
       },
@@ -149,6 +151,31 @@ app.post('/api/logout', (req, res) => {
     res.clearCookie('connect.sid'); // Hapus cookie session
     res.status(200).json({ message: 'Logout berhasil.' });
   });
+});
+
+app.post('/api/change-password', async (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Anda harus login terlebih dahulu.' });
+  }
+
+  const { oldPassword, newPassword } = req.body;
+  const userIndex = users.findIndex(u => u.username === req.session.user.username);
+  
+  if (userIndex === -1) {
+    return res.status(404).json({ error: 'User tidak ditemukan.' });
+  }
+
+  const user = users[userIndex];
+  const isMatch = await bcrypt.compare(oldPassword, user.hashedPassword);
+
+  if (!isMatch) {
+    return res.status(400).json({ error: 'Password lama salah.' });
+  }
+
+  users[userIndex].hashedPassword = await bcrypt.hash(newPassword, 10);
+  await writeUsersToFile(users);
+  
+  res.status(200).json({ message: 'Password berhasil diubah!' });
 });
 
 // Endpoint untuk mendapatkan data user yang sedang login

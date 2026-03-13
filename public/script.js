@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         const user = await response.json();
         authStatusDiv.innerHTML = `
-          <span>Halo, ${user.username}! | <a href="/dashboard.html">Dashboard</a></span>
+          <span>Halo, ${user.username}! | <a href="/dashboard.html">Dashboard</a> | <a href="/apikey-guide.html" target="_blank">Bantuan</a></span>
           <button id="reset-button" title="Mulai percakapan baru">Reset Chat</button>
         `;
       } else {
         authStatusDiv.innerHTML = `
-          <span>Anda adalah Tamu | <a href="/login.html">Login</a> | <a href="/register.html">Daftar</a></span>
+          <span>Tamu | <a href="/login.html">Login</a> | <a href="/register.html">Daftar</a> | <a href="/apikey-guide.html" target="_blank" title="Cara dapat API Key">Bantuan</a></span>
           <button id="reset-button" title="Mulai percakapan baru">Reset Chat</button>
         `;
       }

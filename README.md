@@ -15,6 +15,9 @@ Aplikasi ini memungkinkan pengguna untuk berinteraksi dengan model AI Gemini mel
 -   Pilihan model AI (Gemini 2.5 Flash, 1.5 Flash, 1.5 Pro).
 -   Desain tema "sekolah" yang unik.
 -   Penanganan status loading dan error.
+-   **Sistem Autentikasi**: Fitur Login dan Register untuk pengguna.
+-   **Personalisasi API Key**: Pengguna yang login dapat menggunakan API Key mereka sendiri.
+-   **Konfigurasi AI**: Pengaturan Temperature, Top-P, dan Top-K melalui file `.env`.
 
 ## Prasyarat
 
@@ -36,9 +39,13 @@ Aplikasi ini memungkinkan pengguna untuk berinteraksi dengan model AI Gemini mel
     ```
 
 3.  **Konfigurasi API Key:**
-    Buat file baru bernama `.env` di direktori utama, lalu tambahkan API Key Anda. Dapatkan API Key dari Google AI Studio.
+    Salin file `.env.example` menjadi `.env` dan sesuaikan konfigurasinya:
     ```env
     GEMINI_API_KEY="MASUKKAN_API_KEY_ANDA_DI_SINI"
+    AI_TEMPERATURE=0.9
+    AI_TOP_P=0.95
+    AI_TOP_K=40
+    BUILD_VERSION="v1.0.0"
     ```
 
 4.  **Jalankan server:**
