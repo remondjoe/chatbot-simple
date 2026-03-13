@@ -86,6 +86,7 @@ app.post('/api/chat', async (req, res) => {
         temperature: parseFloat(process.env.AI_TEMPERATURE) || 0.9,
         topP: parseFloat(process.env.AI_TOP_P) || 0.95,
         topK: parseInt(process.env.AI_TOP_K) || 40,
+        maxOutputTokens: parseInt(process.env.AI_MAX_TOKENS) || 1000,
         // Pilih instruksi berdasarkan subject, atau gunakan default jika tidak ada
         systemInstruction: instructions[subject] || instructions.default,
       },
